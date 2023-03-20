@@ -2,6 +2,8 @@
 
 import sys
 
+import base64
+
 if __name__ == "__main__":
     fi1 = open(sys.argv[1], "r")
     fi2 = open(sys.argv[2], "r")
@@ -13,4 +15,5 @@ if __name__ == "__main__":
 
     res = [input[i] ^ key[i%len(key)] for i in range(len(input))]
     res = bytes(res)
-    fo.write(res.hex())
+    res = base64.b64encode(res).decode('ascii')
+    fo.write(res)
